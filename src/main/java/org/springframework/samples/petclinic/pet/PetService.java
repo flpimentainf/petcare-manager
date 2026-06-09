@@ -13,20 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.samples.petclinic.owner;
+package org.springframework.samples.petclinic.pet;
 
-import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
-import org.springframework.validation.BindingResult;
+import java.util.List;
 
-@Component
-public class DuplicatePetNameValidationStrategy implements PetValidationStrategy {
+import org.springframework.stereotype.Service;
 
-    @Override
-    public void validate(Owner owner, Pet pet, BindingResult result) {
-        if (StringUtils.hasLength(pet.getName()) && pet.isNew() && owner.getPet(pet.getName(), true) != null) {
-            result.rejectValue("name", "duplicate", "already exists");
-        }
+@Service
+public class PetService {
+
+    private final PetRepository pets;
+
+    public PetService(PetRepository pets) {
+        this.pets = pets;
+    }
+
+    public List<PetType> findPetTypes() {
+        return this.pets.findPetTypes();
+    }
+
+    public Pet findById(int petId) {
+        return this.pets.findById(petId);
+    }
+
+    public void save(Pet pet) {
+        this.pets.save(pet);
     }
 
 }

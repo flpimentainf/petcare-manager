@@ -1,5 +1,5 @@
 /*
- * Copyright 2002-2013 the original author or authors.
+ * Copyright 2012-2018 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,19 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.samples.petclinic.owner;
+package org.springframework.samples.petclinic.visit;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import org.springframework.stereotype.Service;
 
-import org.springframework.samples.petclinic.model.NamedEntity;
+@Service
+public class VisitService {
 
-/**
- * @author Juergen Hoeller
- *         Can be Cat, Dog, Hamster...
- */
-@Entity
-@Table(name = "types")
-public class PetType extends NamedEntity {
+    private final VisitRepository visits;
+
+    public VisitService(VisitRepository visits) {
+        this.visits = visits;
+    }
+
+    public void save(Visit visit) {
+        this.visits.save(visit);
+    }
 
 }
