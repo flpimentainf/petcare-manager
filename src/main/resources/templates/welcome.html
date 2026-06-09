@@ -4,11 +4,30 @@
 
   <body>
 
-    <h2 th:text="#{welcome}">Welcome</h2>
-    <div class="row">
-        <div class="col-md-12">
-          <img class="img-responsive" src="../static/resources/images/pets.png" th:src="@{/resources/images/pets.png}"/>
+    <div class="home-hero">
+      <div class="row">
+        <div class="col-md-6 home-hero-copy">
+          <p class="eyebrow">Gestão veterinária</p>
+          <h1>petcare-manager</h1>
+          <p class="home-subtitle">
+            Organize tutores, animais, veterinários e visitas em uma experiência mais clara e moderna.
+          </p>
+          <div class="home-actions">
+            <a class="btn btn-default" th:href="@{/owners/find}">
+              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+              Buscar tutores
+            </a>
+            <a class="btn btn-link" th:href="@{/vets.html}">
+              <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+              Ver veterinários
+            </a>
+          </div>
         </div>
+        <div class="col-md-6 home-hero-media">
+          <img class="img-responsive" src="../static/resources/images/pets.png" th:src="@{/resources/images/pets.png}"
+            alt="Animais cadastrados no petcare-manager"/>
+        </div>
+      </div>
     </div>
 
   </body>

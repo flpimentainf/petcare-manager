@@ -10,7 +10,7 @@
 
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/resources/images/favicon.png}">
 
-    <title>PetClinic :: a Spring Framework demonstration</title>
+    <title>petcare-manager</title>
 
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -26,9 +26,14 @@
   <nav class="navbar navbar-default" role="navigation">
       <div class="container">
           <div class="navbar-header">
-              <a class="navbar-brand" th:href="@{/}"><span></span></a>
+              <a class="navbar-brand" th:href="@{/}">
+                <span class="brand-mark">
+                  <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+                </span>
+                <span class="brand-name">petcare-manager</span>
+              </a>
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
-                  <span class="sr-only"><os-p>Toggle navigation</os-p></span>
+                  <span class="sr-only"><os-p>Abrir navegação</os-p></span>
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
@@ -36,32 +41,32 @@
           </div>
           <div class="navbar-collapse collapse" id="main-navbar">
               <ul class="nav navbar-nav navbar-right">
-  
-                  <li th:fragment="menuItem (path,active,title,glyph,text)" class="active" th:class="${active==menu ? 'active' : ''}">
-                      <a th:href="@{__${path}__}" th:title="${title}">
-                        <span th:class="'glyphicon  glyphicon-'+${glyph}" class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                        <span th:text="${text}">Template</span>
+                  <li th:class="${menu == 'home' ? 'active' : ''}">
+                      <a th:href="@{/}" title="página inicial">
+                        <span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>
+                        <span>Início</span>
                       </a>
                   </li>
-  
-                  <li th:replace="::menuItem ('/','home','home page','home','Home')">
-                      <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                      <span>Home</span>
+
+                  <li th:class="${menu == 'owners' ? 'active' : ''}">
+                      <a th:href="@{/owners/find}" title="buscar tutores">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        <span>Tutores</span>
+                      </a>
                   </li>
-  
-                  <li th:replace="::menuItem ('/owners/find','owners','find owners','search','Find owners')">
-                      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                      <span>Find owners</span>
+
+                  <li th:class="${menu == 'vets' ? 'active' : ''}">
+                      <a th:href="@{/vets.html}" title="veterinários">
+                        <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+                        <span>Veterinários</span>
+                      </a>
                   </li>
-  
-                  <li th:replace="::menuItem ('/vets.html','vets','veterinarians','th-list','Veterinarians')">
-                      <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-                      <span>Veterinarians</span>
-                  </li>
-  
-                  <li th:replace="::menuItem ('/oups','error','trigger a RuntimeException to see how it is handled','warning-sign','Error')">
-                      <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
-                      <span>Error</span>
+
+                  <li th:class="${menu == 'error' ? 'active' : ''}">
+                      <a th:href="@{/oups}" title="simular erro da aplicação">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span>Erro</span>
+                      </a>
                   </li>
   
               </ul>
@@ -73,15 +78,10 @@
   
           <th:block th:include="${template}"/>
 
-        <br/>
-        <br/>
-        <div class="container">
-          <div class="row">
-            <div class="col-12 text-center">
-              <img src="../static/resources/images/spring-pivotal-logo.png" th:src="@{/resources/images/spring-pivotal-logo.png}"
-                alt="Sponsored by Pivotal"/></div>
-          </div>
-        </div>
+        <footer class="app-footer">
+          <span>petcare-manager</span>
+          <span>Controle simples para clínicas veterinárias</span>
+        </footer>
       </div>
   </div>
 

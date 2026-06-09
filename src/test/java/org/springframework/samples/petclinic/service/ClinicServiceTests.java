@@ -91,7 +91,7 @@ public class ClinicServiceTests {
         assertThat(owner.getLastName()).startsWith("Franklin");
         assertThat(owner.getPets().size()).isEqualTo(1);
         assertThat(owner.getPets().get(0).getType()).isNotNull();
-        assertThat(owner.getPets().get(0).getType().getName()).isEqualTo("cat");
+        assertThat(owner.getPets().get(0).getType().getName()).isEqualTo("gato");
     }
 
     @Test
@@ -141,9 +141,9 @@ public class ClinicServiceTests {
         Collection<PetType> petTypes = this.pets.findPetTypes();
 
         PetType petType1 = EntityUtils.getById(petTypes, PetType.class, 1);
-        assertThat(petType1.getName()).isEqualTo("cat");
+        assertThat(petType1.getName()).isEqualTo("gato");
         PetType petType4 = EntityUtils.getById(petTypes, PetType.class, 4);
-        assertThat(petType4.getName()).isEqualTo("snake");
+        assertThat(petType4.getName()).isEqualTo("cobra");
     }
 
     @Test
@@ -190,8 +190,8 @@ public class ClinicServiceTests {
         Vet vet = EntityUtils.getById(vets, Vet.class, 3);
         assertThat(vet.getLastName()).isEqualTo("Douglas");
         assertThat(vet.getNrOfSpecialties()).isEqualTo(2);
-        assertThat(vet.getSpecialties().get(0).getName()).isEqualTo("dentistry");
-        assertThat(vet.getSpecialties().get(1).getName()).isEqualTo("surgery");
+        assertThat(vet.getSpecialties().get(0).getName()).isEqualTo("cirurgia");
+        assertThat(vet.getSpecialties().get(1).getName()).isEqualTo("odontologia");
     }
 
     @Test

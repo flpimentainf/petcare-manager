@@ -13,13 +13,18 @@
  */
 @icon-font-path:    "../../webjars/bootstrap/fonts/";
 
-@spring-green:      #6db33f;
-@spring-dark-green: #5fa134;
-@spring-brown:      #34302D;
-@spring-grey:       #838789;
-@spring-light-grey: #f1f1f1;
+@spring-green:      #f5a623;
+@spring-dark-green: #d97904;
+@spring-brown:      #2f261f;
+@spring-grey:       #77716b;
+@spring-light-grey: #fff8ed;
+@petcare-gold:      #f2b84b;
+@petcare-orange:    #ee7b18;
+@petcare-cream:     #fffaf2;
+@petcare-ink:       #2f261f;
+@petcare-border:    #ead8bd;
 
-@body-bg:                           @spring-light-grey;
+@body-bg:                           @petcare-cream;
 @text-color:                        @spring-brown;
 @link-color:                        @spring-dark-green;
 @link-hover-color:                  @spring-dark-green;
@@ -27,18 +32,18 @@
 @navbar-default-link-color:         @spring-light-grey;
 @navbar-default-link-active-color:  @spring-light-grey;
 @navbar-default-link-hover-color:   @spring-light-grey;
-@navbar-default-link-hover-bg:      @spring-green;
+@navbar-default-link-hover-bg:      @petcare-orange;
 @navbar-default-toggle-icon-bar-bg: @spring-light-grey;
 @navbar-default-toggle-hover-bg:    transparent;
-@navbar-default-link-active-bg:     @spring-green;
+@navbar-default-link-active-bg:     @petcare-orange;
 
 @border-radius-base:             0;
 @border-radius-large:            0;
 @border-radius-small:            0;
 
-@btn-default-color:              @spring-light-grey;
-@btn-default-bg:                 @spring-brown;
-@btn-default-border:             @spring-green;
+@btn-default-color:              #ffffff;
+@btn-default-bg:                 @petcare-orange;
+@btn-default-border:             @petcare-orange;
 
 @nav-tabs-active-link-hover-color:        @spring-light-grey;
 @nav-tabs-active-link-hover-bg:           @spring-brown;
@@ -50,12 +55,13 @@
 @table-border-color:                      @spring-brown;
 
 .table > thead > tr > th {
-  background-color: lighten(@spring-brown, 3%);
-  color: @spring-light-grey;
+  background-color: @petcare-ink;
+  color: #fffaf2;
+  border-bottom: 0;
 }
 
 .table-filter {
-  background-color: @spring-brown;
+  background-color: @petcare-ink;
   padding: 9px 12px;
 }
 
@@ -64,21 +70,44 @@
 }
 
 .btn-default {
-  border-width: 2px;
-  transition: border 0.15s;
-  -webkit-transition: border 0.15s;
-  -moz-transition: border 0.15s;
-  -o-transition: border 0.15s;
-  -ms-transition: border 0.15s;
+  border-width: 1px;
+  border-radius: 4px;
+  box-shadow: 0 8px 18px fade(@petcare-orange, 18%);
+  font-family: "montserratregular", sans-serif;
+  letter-spacing: 0;
+  padding: 10px 18px;
+  transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
+  -webkit-transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
+  -moz-transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
+  -o-transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
+  -ms-transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
 
   &:hover,
   &:focus,
   &:active,
   &.active,
   .open .dropdown-toggle& {
-    background-color: @spring-brown;
-    border-color: @spring-brown;
+    background-color: darken(@petcare-orange, 8%);
+    border-color: darken(@petcare-orange, 8%);
+    color: #ffffff;
+    box-shadow: 0 10px 22px fade(@petcare-orange, 26%);
   }
+}
+
+.btn-link {
+  color: @petcare-orange;
+  font-family: "montserratregular", sans-serif;
+  padding: 10px 12px;
+
+  &:hover,
+  &:focus {
+    color: darken(@petcare-orange, 10%);
+    text-decoration: none;
+  }
+}
+
+.btn .glyphicon {
+  margin-right: 6px;
 }
 
 
@@ -91,14 +120,132 @@ code {
 }
 
 .xd-container {
-  margin-top: 40px;
-  margin-bottom: 100px;
-  padding-left: 5px;
-  padding-right: 5px;
+  margin-top: 34px;
+  margin-bottom: 60px;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
 h1 {
   margin-bottom: 15px
+}
+
+.home-hero {
+  background: #ffffff;
+  border: 1px solid @petcare-border;
+  border-radius: 8px;
+  box-shadow: 0 18px 45px fade(@petcare-ink, 10%);
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.home-hero-copy {
+  padding: 58px 52px 48px;
+}
+
+.home-hero h1 {
+  color: @petcare-ink;
+  font-size: 42px;
+  line-height: 48px;
+  margin-bottom: 16px;
+}
+
+.eyebrow {
+  color: @petcare-orange;
+  font-family: "montserratregular", sans-serif;
+  font-size: 12px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.home-subtitle {
+  color: @spring-grey;
+  font-size: 18px;
+  line-height: 28px;
+  margin-bottom: 24px;
+}
+
+.home-actions {
+  .btn + .btn {
+    margin-left: 8px;
+  }
+}
+
+.home-hero-media {
+  background: linear-gradient(135deg, #fff4db 0%, #ffe1b3 100%);
+  min-height: 360px;
+  padding: 34px 32px;
+}
+
+.home-hero-media img {
+  margin: 0 auto;
+  max-height: 330px;
+}
+
+.table {
+  background: #ffffff;
+  border: 1px solid @petcare-border;
+  border-radius: 6px;
+  box-shadow: 0 10px 28px fade(@petcare-ink, 7%);
+  overflow: hidden;
+}
+
+.table > tbody > tr > td,
+.table > tbody > tr > th,
+.table > tfoot > tr > td,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > thead > tr > th {
+  border-color: lighten(@petcare-border, 4%);
+  padding: 12px 14px;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #fff7eb;
+}
+
+.form-horizontal {
+  background: #ffffff;
+  border: 1px solid @petcare-border;
+  border-radius: 8px;
+  box-shadow: 0 10px 28px fade(@petcare-ink, 7%);
+  margin-top: 14px;
+  padding: 26px 24px 18px;
+}
+
+.form-control {
+  border-color: @petcare-border;
+  border-radius: 4px;
+  box-shadow: none;
+  height: 42px;
+
+  &:focus {
+    border-color: @petcare-orange;
+    box-shadow: 0 0 0 3px fade(@petcare-gold, 25%);
+  }
+}
+
+a {
+  color: @petcare-orange;
+
+  &:hover,
+  &:focus {
+    color: darken(@petcare-orange, 12%);
+  }
+}
+
+.app-footer {
+  border-top: 1px solid @petcare-border;
+  color: @spring-grey;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 46px;
+  padding: 20px 0 0;
+}
+
+.app-footer span:first-child {
+  color: @petcare-ink;
+  font-family: "montserratregular", sans-serif;
 }
 
 .index-page--subtitle {

@@ -1,35 +1,46 @@
 .navbar {
-  border-top: 4px solid #6db33f;
-  background-color: #34302d;
+  border-top: 4px solid #f2b84b;
+  background-color: #2f261f;
   margin-bottom: 0px;
   border-bottom: 0;
   border-left: 0;
   border-right: 0;
+  box-shadow: 0 8px 24px fade(#2f261f, 20%);
 }
 
 .navbar a.navbar-brand {
-  background: url("../images/spring-logo-dataflow.png") -1px -1px no-repeat;
-  margin: 12px 0 6px;
-  width: 229px;
-  height: 46px;
-  display: inline-block;
+  align-items: center;
+  display: flex;
+  gap: 12px;
+  height: 58px;
+  margin: 7px 0;
+  width: auto;
   text-decoration: none;
   padding: 0;
 }
 
-.navbar a.navbar-brand span {
-  display: block;
-  width: 229px;
-  height: 46px;
-  background: url("../images/spring-logo-dataflow.png") -1px -48px no-repeat;
-  opacity: 0;
-  -moz-transition: opacity 0.12s ease-in-out;
-  -webkit-transition: opacity 0.12s ease-in-out;
-  -o-transition: opacity 0.12s ease-in-out;
+.navbar a.navbar-brand .brand-mark {
+  align-items: center;
+  background: #f2b84b;
+  border-radius: 8px;
+  color: #2f261f;
+  display: flex;
+  font-family: "montserratregular", sans-serif;
+  font-size: 16px;
+  height: 40px;
+  justify-content: center;
+  width: 40px;
 }
 
-.navbar a:hover.navbar-brand span {
-  opacity: 1;
+.navbar a.navbar-brand .brand-mark .glyphicon {
+  line-height: 1;
+}
+
+.navbar a.navbar-brand .brand-name {
+  color: #fffaf2;
+  font-family: "montserratregular", sans-serif;
+  font-size: 21px;
+  line-height: 24px;
 }
 
 .navbar li > a, .navbar-text {
@@ -38,7 +49,7 @@
   font-size: 14px;
 
 /* line-height: 14px; */
-  padding: 28px 20px;
+  padding: 26px 18px;
   transition: all 0.15s;
   -webkit-transition: all 0.15s;
   -moz-transition: all 0.15s;
@@ -50,13 +61,24 @@
   text-transform: uppercase;
 }
 
+.navbar li > a .glyphicon {
+  margin-right: 6px;
+}
+
 .navbar .navbar-text {
   margin-top: 0;
   margin-bottom: 0;
 }
 .navbar li:hover > a {
-  color: #eeeeee;
-  background-color: #6db33f;
+  color: #2f261f;
+  background-color: #f2b84b;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #2f261f;
+  background-color: #f2b84b;
 }
 
 .navbar-toggle {
