@@ -39,11 +39,11 @@ import java.util.Map;
 class OwnerController {
 
     private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
-    private final OwnerRepository owners;
+    private final OwnerService owners;
 
 
-    public OwnerController(OwnerRepository clinicService) {
-        this.owners = clinicService;
+    public OwnerController(OwnerService ownerService) {
+        this.owners = ownerService;
     }
 
     @InitBinder
@@ -76,24 +76,30 @@ class OwnerController {
 
     @GetMapping("/owners")
     public String processFindForm(Owner owner, BindingResult result, Map<String, Object> model) {
+        normalizeLastName(owner);
+        Collection<Owner> results = findOwners(owner);
+        return processFindResults(owner, result, model, results);
+    }
 
-        // allow parameterless GET request for /owners to return all records
+    private void normalizeLastName(Owner owner) {
         if (owner.getLastName() == null) {
-            owner.setLastName(""); // empty string signifies broadest possible search
+            owner.setLastName("");
         }
+    }
 
-        // find owners by last name
-        Collection<Owner> results = this.owners.findByLastName(owner.getLastName());
+    private Collection<Owner> findOwners(Owner owner) {
+        return this.owners.findByLastName(owner.getLastName());
+    }
+
+    private String processFindResults(Owner owner, BindingResult result, Map<String, Object> model,
+                                      Collection<Owner> results) {
         if (results.isEmpty()) {
-            // no owners found
             result.rejectValue("lastName", "notFound", "not found");
             return "owners/findOwners";
         } else if (results.size() == 1) {
-            // 1 owner found
             owner = results.iterator().next();
             return "redirect:/owners/" + owner.getId();
         } else {
-            // multiple owners found
             model.put("selections", results);
             return "owners/ownersList";
         }

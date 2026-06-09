@@ -16,7 +16,6 @@
 package org.springframework.samples.petclinic.owner;
 
 import org.springframework.samples.petclinic.visit.Visit;
-import org.springframework.samples.petclinic.visit.VisitRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -35,11 +34,11 @@ import java.util.Map;
 @Controller
 class VisitController {
 
-    private final VisitRepository visits;
-    private final PetRepository pets;
+    private final VisitService visits;
+    private final PetService pets;
 
 
-    public VisitController(VisitRepository visits, PetRepository pets) {
+    public VisitController(VisitService visits, PetService pets) {
         this.visits = visits;
         this.pets = pets;
     }

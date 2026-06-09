@@ -17,7 +17,6 @@ package org.springframework.samples.petclinic.owner;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -35,12 +34,14 @@ import java.util.Collection;
 class PetController {
 
     private static final String VIEWS_PETS_CREATE_OR_UPDATE_FORM = "pets/createOrUpdatePetForm";
-    private final PetRepository pets;
-    private final OwnerRepository owners;
+    private final PetService pets;
+    private final OwnerService owners;
+    private final PetValidationStrategy petValidationStrategy;
 
-    public PetController(PetRepository pets, OwnerRepository owners) {
+    public PetController(PetService pets, OwnerService owners, PetValidationStrategy petValidationStrategy) {
         this.pets = pets;
         this.owners = owners;
+        this.petValidationStrategy = petValidationStrategy;
     }
 
     @ModelAttribute("types")
@@ -73,9 +74,7 @@ class PetController {
 
     @PostMapping("/pets/new")
     public String processCreationForm(Owner owner, @Valid Pet pet, BindingResult result, ModelMap model) {
-        if (StringUtils.hasLength(pet.getName()) && pet.isNew() && owner.getPet(pet.getName(), true) != null){
-            result.rejectValue("name", "duplicate", "already exists");
-        }
+        this.petValidationStrategy.validate(owner, pet, result);
         owner.addPet(pet);
         if (result.hasErrors()) {
             model.put("pet", pet);

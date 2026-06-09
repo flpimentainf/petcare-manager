@@ -14,9 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.samples.petclinic.owner.Pet;
-import org.springframework.samples.petclinic.owner.PetRepository;
+import org.springframework.samples.petclinic.owner.PetService;
 import org.springframework.samples.petclinic.owner.VisitController;
-import org.springframework.samples.petclinic.visit.VisitRepository;
+import org.springframework.samples.petclinic.owner.VisitService;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -35,10 +35,10 @@ public class VisitControllerTests {
     private MockMvc mockMvc;
 
     @MockBean
-    private VisitRepository visits;
+    private VisitService visits;
 
     @MockBean
-    private PetRepository pets;
+    private PetService pets;
 
     @Before
     public void init() {

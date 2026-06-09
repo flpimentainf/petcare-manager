@@ -17,12 +17,14 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.samples.petclinic.owner.Owner;
-import org.springframework.samples.petclinic.owner.OwnerRepository;
+import org.springframework.samples.petclinic.owner.OwnerService;
 import org.springframework.samples.petclinic.owner.Pet;
 import org.springframework.samples.petclinic.owner.PetController;
 import org.springframework.samples.petclinic.owner.PetRepository;
+import org.springframework.samples.petclinic.owner.PetService;
 import org.springframework.samples.petclinic.owner.PetType;
 import org.springframework.samples.petclinic.owner.PetTypeFormatter;
+import org.springframework.samples.petclinic.owner.PetValidationStrategy;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -46,10 +48,16 @@ public class PetControllerTests {
     private MockMvc mockMvc;
 
     @MockBean
-    private PetRepository pets;
+    private PetService pets;
 
     @MockBean
-    private OwnerRepository owners;
+    private PetRepository petRepository;
+
+    @MockBean
+    private OwnerService owners;
+
+    @MockBean
+    private PetValidationStrategy petValidationStrategy;
 
     @Before
     public void setup() {
@@ -57,6 +65,7 @@ public class PetControllerTests {
         cat.setId(3);
         cat.setName("hamster");
         given(this.pets.findPetTypes()).willReturn(Lists.newArrayList(cat));
+        given(this.petRepository.findPetTypes()).willReturn(Lists.newArrayList(cat));
         given(this.owners.findById(TEST_OWNER_ID)).willReturn(new Owner());
         given(this.pets.findById(TEST_PET_ID)).willReturn(new Pet());
 
